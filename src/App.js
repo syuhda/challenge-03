@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ToDoSearch from "./pages/ToDoSearch";
 import ToDoInput from "./pages/ToDoInput";
 import Home from "./pages/Home";
+import ToDoEdit from "./pages/ToDoEdit";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/todo-search" element={<ToDoSearch />} />
         <Route path="/todo-input" element={<ToDoInput />} />
+        <Route path="/todo-edit" element={<ToDoEdit />} />
       </Routes>
     </BrowserRouter>
   );

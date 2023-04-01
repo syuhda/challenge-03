@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Container,
   Row,
@@ -9,22 +9,37 @@ import {
   Form,
 } from "react-bootstrap";
 import { FaBook } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import toDoList from "../data/data.json";
 
-function ToDoInput() {
+function ToDoEdit() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [task, setTask] = useState("");
+
+  const id = searchParams.get("id");
   const navigate = useNavigate();
 
-  const [task, setTask] = useState("");
+  useEffect(() => {
+    const old = toDoList.filter((t) => t.id == id);
+    setTask(old[0].task);
+  }, [id]);
 
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const toDoListLength = toDoList.length;
-    toDoList.push({
-      id: toDoListLength + 1,
-      task,
+    if (!id) {
+      return alert("tidak ada id");
+    }
+
+    const newTodo = toDoList.map((t) => {
+      if (t.id == id) {
+        t.task = task;
+      }
+
+      return t;
     });
+
+    toDoList = [...newTodo];
 
     return navigate("/todo-search");
   };
@@ -32,7 +47,7 @@ function ToDoInput() {
   return (
     <Container className="mt-4">
       <h2 className="text-center mb-4">
-        <b>TodoInput</b>
+        <b>TodoEdit</b>
       </h2>
       {/* diluar perlu Row Col ga ya? */}
       <Row className="mb-4">
@@ -72,4 +87,4 @@ function ToDoInput() {
   );
 }
 
-export default ToDoInput;
+export default ToDoEdit;

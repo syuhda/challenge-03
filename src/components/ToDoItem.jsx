@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function ToDoItem({ toDo, toggleCompleted }) {
   return (
@@ -21,7 +22,12 @@ function ToDoItem({ toDo, toggleCompleted }) {
             onChange={toggleCompleted}
           />
         </Button>
-        <Button variant="warning" className="mx-2">
+        <Button
+          variant="warning"
+          className="mx-2"
+          as={Link}
+          to={`/todo-edit?id=${toDo.id}`}
+        >
           <FaEdit style={{ color: "white" }} />
         </Button>
         <Button variant="danger" className="me-4">

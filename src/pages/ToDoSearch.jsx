@@ -37,7 +37,6 @@ function ToDoSearch() {
     // console.dir(e.target["search"].value);
     // setFilterSearch(e.target.value.toLowerCase());
   };
-  // console.log(items);
 
   const deleteAllDone = (e) => {
     e.preventDefault();
@@ -55,6 +54,15 @@ function ToDoSearch() {
 
     setToDo([]);
   };
+
+  // const deleteItem = (e) => {
+  //   e.preventDefault();
+
+  //   setToDo((toDo) => {
+  //     toDo.filter((task) =>
+  //       task.id!==2)
+  //   });
+  // };
 
   return (
     <Container className="my-4">
@@ -109,6 +117,8 @@ function ToDoSearch() {
           </Card>
         </Col>
       </Row>
+
+      {/* TODO LIST */}
       <h2 className="text-center mb-4">TodoList</h2>
       <Row className="text-center">
         <Col>
@@ -145,6 +155,7 @@ function ToDoSearch() {
           </div>
         </Col>
       </Row>
+
       <Row className="mt-4">
         <Col>
           <Table bordered hover>
@@ -168,6 +179,7 @@ function ToDoSearch() {
                         key={toDo.id}
                       />
                     )
+                    // (<h4>No data</h4>)
                   )
                 )}
               {toDo &&
@@ -200,6 +212,7 @@ function ToDoSearch() {
           </Table>
         </Col>
       </Row>
+
       <Row className="text-center">
         <Col>
           <div className="d-grid gap-2">
